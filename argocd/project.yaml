@@ -34,7 +34,7 @@ spec:
     namespace: vps-pmugica-dev
   source:
     path: argocd/apps
-    repoURL: https://github.com/jsoladur/contabo-vps-gitops-argocd.git
+    repoURL: https://github.com/mullycap/contabo-vps-gitops-argocd.git
     targetRevision: main
   syncPolicy:
     automated:
