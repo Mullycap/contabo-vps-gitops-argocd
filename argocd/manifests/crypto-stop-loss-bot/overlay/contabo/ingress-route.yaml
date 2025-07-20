@@ -6,11 +6,11 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`crypto-bot.vps.jmsola.dev`) && PathPrefix(`/`)
+  - match: Host(`crypto-bot.vps.pmugica.dev`) && PathPrefix(`/`)
     kind: Rule
     services:
     - name: crypto-stop-loss-bot
       port: http
   tls:
-    secretName: crypto-bot-vps-jmsola-dev-cert-secret
+    secretName: crypto-bot-vps-pmugica-dev-cert-secret
     

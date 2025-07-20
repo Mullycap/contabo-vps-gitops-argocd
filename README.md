@@ -1,6 +1,6 @@
-# `vps.jmsola.dev` – Personal Project Hosting Environment
+# `vps.pmugica.dev` – Personal Project Hosting Environment
 
-- [`vps.jmsola.dev` – Personal Project Hosting Environment](#vpsjmsoladev--personal-project-hosting-environment)
+- [`vps.pmugica.dev` – Personal Project Hosting Environment](#vpspmugicadev--personal-project-hosting-environment)
   - [Overview](#overview)
   - [📦 Prerequisites](#-prerequisites)
   - [🚀 Installation](#-installation)
@@ -22,7 +22,7 @@
 
 ## Overview
 
-This repository documents the setup process for provisioning and managing a personal VPS (`vps.jmsola.dev`) using [K3s](https://k3s.io/) and [ArgoCD](https://argo-cd.readthedocs.io/en/stable/). The goal is to maintain a lightweight, production-ready Kubernetes environment for hosting and deploying personal side projects.
+This repository documents the setup process for provisioning and managing a personal VPS (`vps.pmugica.dev`) using [K3s](https://k3s.io/) and [ArgoCD](https://argo-cd.readthedocs.io/en/stable/). The goal is to maintain a lightweight, production-ready Kubernetes environment for hosting and deploying personal side projects.
 
 ---
 
@@ -41,7 +41,7 @@ This repository documents the setup process for provisioning and managing a pers
 ### 1. Connect to the VPS
 
 ```bash
-ssh root@vps.jmsola.dev
+ssh root@vps.pmugica.dev
 ```
 
 ---
@@ -51,7 +51,7 @@ ssh root@vps.jmsola.dev
 Install K3s with custom TLS SANs to support domain and IP access:
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--tls-san vps.jmsola.dev --tls-san 207.180.239.230" sh -s -
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--tls-san vps.pmugica.dev --tls-san 161.97.71.27 " sh -s -
 ```
 
 Open necessary ports for Kubernetes API and HTTP/HTTPS traffic:
@@ -81,7 +81,7 @@ sudo cat /etc/rancher/k3s/k3s.yaml
 Copy the output to your local machine and save it as:
 
 ```bash
-~/.kube/vps.jmsola.dev_k3s-config.yaml
+~/.kube/vps.pmugica.dev_k3s-config.yaml
 ```
 
 #### 3.2. Use KUBECONFIG
@@ -89,7 +89,7 @@ Copy the output to your local machine and save it as:
 On your local machine:
 
 ```bash
-export KUBECONFIG=$HOME/.kube/vps.jmsola.dev_k3s-config.yaml
+export KUBECONFIG=$HOME/.kube/vps.pmugica.dev_k3s-config.yaml
 ```
 
 You can now run `kubectl` commands against your K3s cluster.
@@ -132,7 +132,7 @@ Install and configure the ArgoCD CLI:
 ```bash
 brew install argocd
 export ARGOCD_OPTS='--insecure --port-forward-namespace argocd'
-argocd login vps.jmsola.dev
+argocd login vps.pmugica.dev
 ```
 
 Add your GitHub repository:
@@ -141,7 +141,7 @@ Add your GitHub repository:
 export GITHUB_USERNAME=jsoladur
 export GITHUB_PERSONAL_ACCESS_TOKEN=<your_personal_access_token>
 
-argocd repo add https://github.com/jsoladur/contabo-vps-gitops-argocd.git \
+argocd repo add https://github.com/mullycap/contabo-vps-gitops-argocd.git \
   --username $GITHUB_USERNAME \
   --password $GITHUB_PERSONAL_ACCESS_TOKEN
 
@@ -166,7 +166,7 @@ Once you have installed kubeseal, we have to download the private key locally fo
 kubeseal \
   --controller-name=sealed-secrets \
   --controller-namespace=toolbox \
-  --fetch-cert > $HOME/.kube/vps-jmsola-dev-sealed-secrets.cert
+  --fetch-cert > $HOME/.kube/vps-pmugica-dev-sealed-secrets.cert
 ```
 
 
@@ -183,7 +183,7 @@ kubectl create secret generic github-creds \
   --dry-run=client -o yaml |
 kubeseal \
   --format=yaml \
-  --cert=$HOME/.kube/vps-jmsola-dev-sealed-secrets.cert > ./argocd/manifests/argocd-image-updater/base/github-creds-secret.yaml
+  --cert=$HOME/.kube/vps-pmugica-dev-sealed-secrets.cert > ./argocd/manifests/argocd-image-updater/base/github-creds-secret.yaml
 ```
 
 ### 6. Install `Crypto Stop Loss` application
@@ -207,7 +207,7 @@ kubectl create secret generic crypto-stop-loss-bot \
   --dry-run=client -o yaml |
 kubeseal \
   --format=yaml \
-  --cert=$HOME/.kube/vps-jmsola-dev-sealed-secrets.cert > ./argocd/manifests/crypto-stop-loss-bot/base/secret.yaml
+  --cert=$HOME/.kube/vps-pmugica-dev-sealed-secrets.cert > ./argocd/manifests/crypto-stop-loss-bot/base/secret.yaml
 ```
 
 It allows to copy at clipboard the output of the encrypted secret. Then, 

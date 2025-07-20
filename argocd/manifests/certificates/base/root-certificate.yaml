@@ -8,14 +8,14 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
     argocd.argoproj.io/sync-options: Prune=true
 spec:
-  secretName: vps-jmsola-dev-cert-secret
-  commonName: "vps.jmsola.dev"
+  secretName: vps-pmugica-dev-cert-secret
+  commonName: "vps.pmugica.dev"
   issuerRef: 
     kind: ClusterIssuer
     name: letsencrypt-prod
     group: cert-manager.io
   dnsNames:
-    - "vps.jmsola.dev"
+    - "vps.pmugica.dev"
   # TODO: Uncomment the secretTemplate section if you want to enable reflection for this certificate
   # secretTemplate:
   #   annotations:
