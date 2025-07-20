@@ -138,7 +138,7 @@ argocd login vps.pmugica.dev
 Add your GitHub repository:
 
 ```bash
-export GITHUB_USERNAME=jsoladur
+export GITHUB_USERNAME=mullycap
 export GITHUB_PERSONAL_ACCESS_TOKEN=<your_personal_access_token>
 
 argocd repo add https://github.com/mullycap/contabo-vps-gitops-argocd.git \
@@ -173,7 +173,7 @@ kubeseal \
 ### 5. Give to `argocd-image-updater` our GitHub credentials
 
 ```bash
-export GITHUB_USERNAME=jsoladur
+export GITHUB_USERNAME=mullycap
 export GITHUB_PERSONAL_ACCESS_TOKEN=<your_personal_access_token>
 
 kubectl create secret generic github-creds \

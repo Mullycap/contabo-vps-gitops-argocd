@@ -23,7 +23,7 @@ spec:
     namespace: crypto-stop-loss-bot
   source: 
     path: argocd/manifests/crypto-stop-loss-bot/overlay/contabo
-    repoURL: https://github.com/jsoladur/contabo-vps-gitops-argocd.git
+    repoURL: https://github.com/mullycap/contabo-vps-gitops-argocd.git
     targetRevision: main
   syncPolicy:
     automated:
